@@ -11,7 +11,10 @@ class Category extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    protected $fillable = [
-        'name',
-    ];
+    protected $guarded = [];
+
+    public function item()
+    {
+        return $this->hasMany(Item::class);
+    }
 }
