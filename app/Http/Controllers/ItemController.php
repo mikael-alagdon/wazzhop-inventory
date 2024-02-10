@@ -10,15 +10,26 @@ class ItemController extends Controller
 {
     public function store(Request $request)
     {
-        $inputs = $request->all();
-        Item::create([
-            'name' => $inputs['name'],
-            'description' => $inputs['description'],
-            'category_id' => 1,
+        $validator = Validator::make($request->all(), [
+            "name" => ["required", "max:32", "min:4", "unique:items"],
+            "desciption" => "required|email|max:64|unique:users",
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'ok' => false,
+                'message' => "Request didn't pass the validation",
+                'errors' => $validator->errors()
+            ], 400);
+        }
+        $validated = $validator->safe()->only('name', 'desciption');
+        $item = Item::create([
+            'name' => $validated['name'],
+            'desciption' => $validated['desciption'],
         ]);
         return response()->json([
             'ok' => true,
-            'message' => 'item has been created.'
+            'message' => "Item has been created",
+            'data' => $item
         ], 200);
     }
 
