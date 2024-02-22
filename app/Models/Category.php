@@ -9,11 +9,10 @@ use Laravel\Passport\HasApiTokens;
 
 class Category extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
-
+    
     protected $guarded = [];
 
-    public function item()
+    public function items()
     {
         return $this->hasMany(Item::class);
     }

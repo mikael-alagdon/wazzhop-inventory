@@ -9,17 +9,12 @@ use Laravel\Passport\HasApiTokens;
 
 class Item extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
-
-    protected $fillable = [
-        'name',
-        'description',
-        'category_id',
-    ];
+    
+    protected $guarded = [];
 
 
-    public function category()
+    public function categories()
     {
-        return $this->hasMany(Item::class);
+        return $this->hasMany(Category::class);
     }
 }

@@ -15,6 +15,17 @@ Route::patch('/users/{user}', [App\Http\Controllers\UserController::class, 'upda
 Route::delete('/users/{user}', [App\Http\Controllers\UserController::class, 'destroy']);
 
 //Categories
+Route::prefix('categories')->group(function () {
+    Route::post('/', [App\Http\Controllers\CategoryController::class, 'store']);
+    // ULR/api/categories
+    Route::get('/', [App\Http\Controllers\CategoryController::class, 'index']);
+    // ULR/api/categories
+    Route::get('/paginate/{page}', [App\Http\Controllers\CategoryController::class, 'paginate']);
+    // ULR/api/categories/{id}
+    Route::patch('/{category}', [App\Http\Controllers\CategoryController::class, 'update']);
+    // ULR/api/categories/{id}
+    Route::delete('/{category}', [App\Http\Controllers\CategoryController::class, 'destroy']);
+});
 
 // ULR/api/categories/add
 Route::post('categories/add', [App\Http\Controllers\CategoryController::class, 'store']);
