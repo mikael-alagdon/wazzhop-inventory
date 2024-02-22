@@ -39,7 +39,7 @@ class UserController extends Controller
             'ok' => true,
             'message' => "User has been created",
             'data' => $user
-        ], 200);
+        ], 201);
     }
 
     public function index()

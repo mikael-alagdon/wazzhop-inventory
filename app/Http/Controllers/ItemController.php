@@ -39,7 +39,7 @@ class ItemController extends Controller
             'ok' => true,
             'data' => Item::all(),
             'message' => 'all items retrieved'
-        ], 200);
+        ], 201);
     }
 
 
